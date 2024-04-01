@@ -67,8 +67,8 @@
       "c c c c c c h h h h h h h h h h h h h h"
       "c c c c c c h h h h h h h h h h h h h h"
       "c c c c c c h h h h h h h h h h h h h h"
-      "d d d e e e i i i i i i i i i i i i i i"
-      "d d d e e e j j j j j j j j j j j j j j"
+      "c c c c c c h h h h h h h h h h h h h h"
+      "j j j j j j j j j j j j j j j j j j j j"
       "d d d e e e k k k k k k k k k k k k k k";
   }
   
@@ -87,14 +87,13 @@
     }
 
 
-
-  .d { grid-area: d;  background-color: #bccfb7 ;}
-  .e { grid-area: e;  background-color: #bccfb7 ;}
-  .f { grid-area: f;  background-color: #c1dddf ;}
-  .g { grid-area: g;  background-color: #bccfb7 ;}
+  .d { grid-area: d;  background-color:  #d4def0; ;}
+  .e { grid-area: e;  background-color: #d4def0; ;}
+  .f { grid-area: f;  background-color:  #d4def0;}
+  .g { grid-area: g;  background-color: #868b85 ;}
   .h { grid-area: h;  background-color:  #ece5be;}
-  .i { grid-area: i;  background-color: #bccfb7 ;}
-  .j { grid-area: j;  background-color: #bccfb7 ;}
+  .i { grid-area: i;  background-color: #868b85 ;}
+  .j { grid-area: j;  background-color: #868b85 ;}
   .k { grid-area: k; background-color: #d6aaaa ; 
   display: flex; /* This makes the container a flex container */
   flex-direction: row; /* Arrange items horizontally */

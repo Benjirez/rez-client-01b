@@ -1,8 +1,7 @@
 <script>
     import {myData, collPick, selectedIndex } from './stateStore.js'
 </script>
-<div><br><br>{#if $myData.length}myData.length: {$myData.length} {:else}No Data{/if}<br>
-{#if $selectedIndex != 'none' }selectedIndex: {$selectedIndex} {:else}selectedIndex: NONE{/if}
+<div>{#if $myData.length}total: {$myData.length}{:else}No Data{/if} / {#if $selectedIndex != 'none' }selected: {$selectedIndex} {:else}selected: NONE{/if}
 
 <!--&nbsp &nbsp
 collPick: { $collPick  } -->
