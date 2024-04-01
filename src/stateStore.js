@@ -6,7 +6,7 @@ export const selectedOption = writable()
 
 export const collPick = writable(0)
 
-export const test1 = writable('test')
+export const selectedIndex = writable('none')
 
 export const API_URI = writable('https://aware-crow-shrug.cyclic.app') 
 

@@ -12,7 +12,7 @@
     width: 100%;
     height: 100%;
     padding: 0px 6px;
-    background-color: #f3db91;
+    background-color: #ece5be;
     font-family: monospace;
     font-size: 20px;
     overflow-x: auto; 

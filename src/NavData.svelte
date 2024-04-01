@@ -1,10 +1,12 @@
 <script>
-import { myData, collPick,  API_URI } from './stateStore.js'
+import { myData, collPick,  API_URI, selectedIndex , selectedOption} from './stateStore.js'
 
 const refreshMe = async () => {
+    $selectedIndex = 'none'
     const res = await fetch( $API_URI +'/old/' + $collPick);
     $myData = await res.json() 
     console.log ($myData)
+
   }
 
   const sortMe = ()=>{
@@ -22,7 +24,12 @@ const refreshMe = async () => {
     }
     return 0; // If titles are equal, return 0
     });
+   
+   $selectedIndex = $myData.findIndex(item => item === $selectedOption ); 
+   //console.log( newIndex)
   }
+
+
   let mySearch = "";
   // Assuming you have an array of objects called 'myCollection'
     const searchMe =()=>{
@@ -31,6 +38,7 @@ const refreshMe = async () => {
     const searchText = mySearch.toLowerCase(); // Convert searchText to lowercase for case-insensitive matching
     return myKeyValue.includes(searchText);
     });
+    $selectedIndex = $myData.findIndex(item => item === $selectedOption ); 
   }
 
 </script>

@@ -6,7 +6,7 @@
   const refreshMe = async () => {
     const res = await fetch( $API_URI +'/old/' + $collPick);
     $myData = await res.json() 
-    console.log ($myData)
+    //console.log ($myData)
   }
 
   onMount( refreshMe );
