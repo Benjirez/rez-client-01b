@@ -3,7 +3,7 @@
   </script>
     
   {#if $selectedOption}
-  <input id='title1' value={$selectedOption.col_a} on:change={ (e)=>{$selectedOption.col_a=e.target.value} }>{/if}
+  <input id='title1' bind:value={$selectedOption.col_a} >{/if}
   
   <style>
     

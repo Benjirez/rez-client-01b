@@ -550,7 +550,7 @@ var app = (function () {
 
     const collPick = writable(0);
 
-    const selectedIndex = writable('none');
+    const selectedIndex = writable(0);
 
     const API_URI = writable('https://aware-crow-shrug.cyclic.app'); 
 
@@ -586,14 +586,32 @@ var app = (function () {
     	let $myData;
     	let $collPick;
     	let $API_URI;
+    	let $selectedOption;
     	validate_store(myData, 'myData');
     	component_subscribe($$self, myData, $$value => $$invalidate(0, $myData = $$value));
     	validate_store(collPick, 'collPick');
     	component_subscribe($$self, collPick, $$value => $$invalidate(1, $collPick = $$value));
     	validate_store(API_URI, 'API_URI');
     	component_subscribe($$self, API_URI, $$value => $$invalidate(2, $API_URI = $$value));
+    	validate_store(selectedOption, 'selectedOption');
+    	component_subscribe($$self, selectedOption, $$value => $$invalidate(3, $selectedOption = $$value));
     	let { $$slots: slots = {}, $$scope } = $$props;
     	validate_slots('GetData', slots, []);
+
+    	set_store_value(
+    		selectedOption,
+    		$selectedOption = {
+    			col_a: "",
+    			col_b: "",
+    			col_c: "",
+    			col_d: "",
+    			col_e: "",
+    			col_f: "",
+    			col_g: "",
+    			col_h: ""
+    		},
+    		$selectedOption
+    	);
 
     	const refreshMe = async () => {
     		const res = await fetch($API_URI + '/old/' + $collPick);
@@ -611,11 +629,13 @@ var app = (function () {
     		myData,
     		collPick,
     		API_URI,
+    		selectedOption,
     		onMount,
     		refreshMe,
     		$myData,
     		$collPick,
-    		$API_URI
+    		$API_URI,
+    		$selectedOption
     	});
 
     	return [];
@@ -646,7 +666,7 @@ var app = (function () {
     }
 
     // (34:21) {#if option.col_a === ""}
-    function create_if_block$4(ctx) {
+    function create_if_block$3(ctx) {
     	let t;
 
     	const block = {
@@ -663,7 +683,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$4.name,
+    		id: create_if_block$3.name,
     		type: "if",
     		source: "(34:21) {#if option.col_a === \\\"\\\"}",
     		ctx
@@ -680,7 +700,7 @@ var app = (function () {
     	let t1;
     	let mounted;
     	let dispose;
-    	let if_block = /*option*/ ctx[8].col_a === "" && create_if_block$4(ctx);
+    	let if_block = /*option*/ ctx[8].col_a === "" && create_if_block$3(ctx);
 
     	function click_handler() {
     		return /*click_handler*/ ctx[5](/*option*/ ctx[8], /*index*/ ctx[10]);
@@ -718,7 +738,7 @@ var app = (function () {
 
     			if (/*option*/ ctx[8].col_a === "") {
     				if (if_block) ; else {
-    					if_block = create_if_block$4(ctx);
+    					if_block = create_if_block$3(ctx);
     					if_block.c();
     					if_block.m(button, t1);
     				}
@@ -927,9 +947,8 @@ var app = (function () {
     const file$8 = "src\\ViewTitle.svelte";
 
     // (5:2) {#if $selectedOption}
-    function create_if_block$3(ctx) {
+    function create_if_block$2(ctx) {
     	let input;
-    	let input_value_value;
     	let mounted;
     	let dispose;
 
@@ -937,21 +956,21 @@ var app = (function () {
     		c: function create() {
     			input = element("input");
     			attr_dev(input, "id", "title1");
-    			input.value = input_value_value = /*$selectedOption*/ ctx[0].col_a;
     			attr_dev(input, "class", "svelte-vgyalv");
     			add_location(input, file$8, 5, 2, 110);
     		},
     		m: function mount(target, anchor) {
     			insert_dev(target, input, anchor);
+    			set_input_value(input, /*$selectedOption*/ ctx[0].col_a);
 
     			if (!mounted) {
-    				dispose = listen_dev(input, "change", /*change_handler*/ ctx[1], false, false, false, false);
+    				dispose = listen_dev(input, "input", /*input_input_handler*/ ctx[1]);
     				mounted = true;
     			}
     		},
     		p: function update(ctx, dirty) {
-    			if (dirty & /*$selectedOption*/ 1 && input_value_value !== (input_value_value = /*$selectedOption*/ ctx[0].col_a) && input.value !== input_value_value) {
-    				prop_dev(input, "value", input_value_value);
+    			if (dirty & /*$selectedOption*/ 1 && input.value !== /*$selectedOption*/ ctx[0].col_a) {
+    				set_input_value(input, /*$selectedOption*/ ctx[0].col_a);
     			}
     		},
     		d: function destroy(detaching) {
@@ -963,7 +982,7 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
-    		id: create_if_block$3.name,
+    		id: create_if_block$2.name,
     		type: "if",
     		source: "(5:2) {#if $selectedOption}",
     		ctx
@@ -973,138 +992,6 @@ var app = (function () {
     }
 
     function create_fragment$9(ctx) {
-    	let if_block_anchor;
-    	let if_block = /*$selectedOption*/ ctx[0] && create_if_block$3(ctx);
-
-    	const block = {
-    		c: function create() {
-    			if (if_block) if_block.c();
-    			if_block_anchor = empty();
-    		},
-    		l: function claim(nodes) {
-    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
-    		},
-    		m: function mount(target, anchor) {
-    			if (if_block) if_block.m(target, anchor);
-    			insert_dev(target, if_block_anchor, anchor);
-    		},
-    		p: function update(ctx, [dirty]) {
-    			if (/*$selectedOption*/ ctx[0]) {
-    				if (if_block) {
-    					if_block.p(ctx, dirty);
-    				} else {
-    					if_block = create_if_block$3(ctx);
-    					if_block.c();
-    					if_block.m(if_block_anchor.parentNode, if_block_anchor);
-    				}
-    			} else if (if_block) {
-    				if_block.d(1);
-    				if_block = null;
-    			}
-    		},
-    		i: noop,
-    		o: noop,
-    		d: function destroy(detaching) {
-    			if (if_block) if_block.d(detaching);
-    			if (detaching) detach_dev(if_block_anchor);
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_fragment$9.name,
-    		type: "component",
-    		source: "",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    function instance$9($$self, $$props, $$invalidate) {
-    	let $selectedOption;
-    	validate_store(selectedOption, 'selectedOption');
-    	component_subscribe($$self, selectedOption, $$value => $$invalidate(0, $selectedOption = $$value));
-    	let { $$slots: slots = {}, $$scope } = $$props;
-    	validate_slots('ViewTitle', slots, []);
-    	const writable_props = [];
-
-    	Object.keys($$props).forEach(key => {
-    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ViewTitle> was created with unknown prop '${key}'`);
-    	});
-
-    	const change_handler = e => {
-    		set_store_value(selectedOption, $selectedOption.col_a = e.target.value, $selectedOption);
-    	};
-
-    	$$self.$capture_state = () => ({ selectedOption, $selectedOption });
-    	return [$selectedOption, change_handler];
-    }
-
-    class ViewTitle extends SvelteComponentDev {
-    	constructor(options) {
-    		super(options);
-    		init(this, options, instance$9, create_fragment$9, safe_not_equal, {});
-
-    		dispatch_dev("SvelteRegisterComponent", {
-    			component: this,
-    			tagName: "ViewTitle",
-    			options,
-    			id: create_fragment$9.name
-    		});
-    	}
-    }
-
-    /* src\ViewDoc.svelte generated by Svelte v3.59.2 */
-    const file$7 = "src\\ViewDoc.svelte";
-
-    // (5:0) {#if $selectedOption}
-    function create_if_block$2(ctx) {
-    	let textarea;
-    	let textarea_value_value;
-    	let mounted;
-    	let dispose;
-
-    	const block = {
-    		c: function create() {
-    			textarea = element("textarea");
-    			attr_dev(textarea, "id", "body1");
-    			textarea.value = textarea_value_value = /*$selectedOption*/ ctx[0].col_c;
-    			attr_dev(textarea, "class", "svelte-5xxgif");
-    			add_location(textarea, file$7, 5, 0, 100);
-    		},
-    		m: function mount(target, anchor) {
-    			insert_dev(target, textarea, anchor);
-
-    			if (!mounted) {
-    				dispose = listen_dev(textarea, "input", /*input_handler*/ ctx[1], false, false, false, false);
-    				mounted = true;
-    			}
-    		},
-    		p: function update(ctx, dirty) {
-    			if (dirty & /*$selectedOption*/ 1 && textarea_value_value !== (textarea_value_value = /*$selectedOption*/ ctx[0].col_c)) {
-    				prop_dev(textarea, "value", textarea_value_value);
-    			}
-    		},
-    		d: function destroy(detaching) {
-    			if (detaching) detach_dev(textarea);
-    			mounted = false;
-    			dispose();
-    		}
-    	};
-
-    	dispatch_dev("SvelteRegisterBlock", {
-    		block,
-    		id: create_if_block$2.name,
-    		type: "if",
-    		source: "(5:0) {#if $selectedOption}",
-    		ctx
-    	});
-
-    	return block;
-    }
-
-    function create_fragment$8(ctx) {
     	let if_block_anchor;
     	let if_block = /*$selectedOption*/ ctx[0] && create_if_block$2(ctx);
 
@@ -1144,6 +1031,93 @@ var app = (function () {
 
     	dispatch_dev("SvelteRegisterBlock", {
     		block,
+    		id: create_fragment$9.name,
+    		type: "component",
+    		source: "",
+    		ctx
+    	});
+
+    	return block;
+    }
+
+    function instance$9($$self, $$props, $$invalidate) {
+    	let $selectedOption;
+    	validate_store(selectedOption, 'selectedOption');
+    	component_subscribe($$self, selectedOption, $$value => $$invalidate(0, $selectedOption = $$value));
+    	let { $$slots: slots = {}, $$scope } = $$props;
+    	validate_slots('ViewTitle', slots, []);
+    	const writable_props = [];
+
+    	Object.keys($$props).forEach(key => {
+    		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ViewTitle> was created with unknown prop '${key}'`);
+    	});
+
+    	function input_input_handler() {
+    		$selectedOption.col_a = this.value;
+    		selectedOption.set($selectedOption);
+    	}
+
+    	$$self.$capture_state = () => ({ selectedOption, $selectedOption });
+    	return [$selectedOption, input_input_handler];
+    }
+
+    class ViewTitle extends SvelteComponentDev {
+    	constructor(options) {
+    		super(options);
+    		init(this, options, instance$9, create_fragment$9, safe_not_equal, {});
+
+    		dispatch_dev("SvelteRegisterComponent", {
+    			component: this,
+    			tagName: "ViewTitle",
+    			options,
+    			id: create_fragment$9.name
+    		});
+    	}
+    }
+
+    /* src\ViewDoc.svelte generated by Svelte v3.59.2 */
+    const file$7 = "src\\ViewDoc.svelte";
+
+    function create_fragment$8(ctx) {
+    	let textarea;
+    	let mounted;
+    	let dispose;
+
+    	const block = {
+    		c: function create() {
+    			textarea = element("textarea");
+    			attr_dev(textarea, "id", "body1");
+    			attr_dev(textarea, "class", "svelte-5xxgif");
+    			add_location(textarea, file$7, 17, 0, 349);
+    		},
+    		l: function claim(nodes) {
+    			throw new Error("options.hydrate only works if the component was compiled with the `hydratable: true` option");
+    		},
+    		m: function mount(target, anchor) {
+    			insert_dev(target, textarea, anchor);
+    			set_input_value(textarea, /*$selectedOption*/ ctx[0].col_c);
+
+    			if (!mounted) {
+    				dispose = listen_dev(textarea, "input", /*textarea_input_handler*/ ctx[1]);
+    				mounted = true;
+    			}
+    		},
+    		p: function update(ctx, [dirty]) {
+    			if (dirty & /*$selectedOption*/ 1) {
+    				set_input_value(textarea, /*$selectedOption*/ ctx[0].col_c);
+    			}
+    		},
+    		i: noop,
+    		o: noop,
+    		d: function destroy(detaching) {
+    			if (detaching) detach_dev(textarea);
+    			mounted = false;
+    			dispose();
+    		}
+    	};
+
+    	dispatch_dev("SvelteRegisterBlock", {
+    		block,
     		id: create_fragment$8.name,
     		type: "component",
     		source: "",
@@ -1165,12 +1139,13 @@ var app = (function () {
     		if (!~writable_props.indexOf(key) && key.slice(0, 2) !== '$$' && key !== 'slot') console.warn(`<ViewDoc> was created with unknown prop '${key}'`);
     	});
 
-    	const input_handler = e => {
-    		set_store_value(selectedOption, $selectedOption.c = e.target.value, $selectedOption);
-    	};
+    	function textarea_input_handler() {
+    		$selectedOption.col_c = this.value;
+    		selectedOption.set($selectedOption);
+    	}
 
     	$$self.$capture_state = () => ({ selectedOption, $selectedOption });
-    	return [$selectedOption, input_handler];
+    	return [$selectedOption, textarea_input_handler];
     }
 
     class ViewDoc extends SvelteComponentDev {
