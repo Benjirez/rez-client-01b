@@ -5,7 +5,7 @@ const refreshMe = async () => {
     $selectedIndex = 'none'
     const res = await fetch( $API_URI +'/old/' + $collPick);
     $myData = await res.json() 
-    console.log ($myData)
+    //console.log ($myData)
 
   }
 
@@ -34,7 +34,12 @@ const refreshMe = async () => {
   // Assuming you have an array of objects called 'myCollection'
     const searchMe =()=>{
         $myData = $myData.filter(obj => {
-    const myKeyValue = obj.col_c.toLowerCase(); // Convert myKey value to lowercase for case-insensitive matching
+
+          let low1 = obj.col_c.toLowerCase()
+          let low2 = obj.col_a.toLowerCase()
+          let low3 = low1 + ' ' + low2
+
+    const myKeyValue = ( low3 ); // Convert myKey value to lowercase for case-insensitive matching
     const searchText = mySearch.toLowerCase(); // Convert searchText to lowercase for case-insensitive matching
     return myKeyValue.includes(searchText);
     });
@@ -44,6 +49,7 @@ const refreshMe = async () => {
 </script>
 
 <!-- <input type="text" bind:value={$collPick} on:change={ refreshMe }/> -->
+
 <button class:selected={$collPick === 0} on:click={ ()=>{ $collPick=0; refreshMe() }}>1</button>
 <button class:selected={$collPick === 1} on:click={ ()=>{ $collPick=1; refreshMe() }}>2</button>
 <button class:selected={$collPick === 2} on:click={ ()=>{ $collPick=2; refreshMe() }}>3</button>
@@ -52,6 +58,7 @@ const refreshMe = async () => {
 <button class:selected={$collPick === 5} on:click={ ()=>{ $collPick=5; refreshMe() }}>6</button>
 &nbsp <button on:click={ sortMe }>A-Z</button>
 &nbsp<input type="text" bind:value={ mySearch } on:change={ searchMe } />
+
 
 <style>
   input{
@@ -63,6 +70,18 @@ const refreshMe = async () => {
 
   .selected {
     background-color: rgb(238, 156, 156);
+  }
+
+  button{
+    margin: 0px;
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size:18px;
+  }
+ 
+  input{
+    margin: 0px;
+
   }
 
 </style>

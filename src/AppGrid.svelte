@@ -72,11 +72,16 @@
       "d d d e e e k k k k k k k k k k k k k k";
   }
   
-  .a { grid-area: a; background-color: #d6aaaa ;
+  .a { 
+
+    grid-area: a; 
+    background-color: #d6aaaa ;
     display: flex; /* This makes the container a flex container */
     flex-direction: row; /* Arrange items horizontally */
     justify-content:space-evenly; /* Align items horizontally in the center */
-    align-items: center; /* Align items vertically in the center */}
+    align-items: center; /* Align items vertically in the center */
+  }
+
   .b { grid-area: b;  background-color: #868b85 ;}
   .c { 
         grid-area: c;  

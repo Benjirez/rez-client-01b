@@ -1,7 +1,7 @@
 <script>
-    import GetData from './GetData.svelte'
+    import GetData from '../GetData.svelte'
     import SelectTitle from './SelectTitle.svelte'
-    import ViewDoc from './ViewDoc.svelte'
+    import ViewDoc from '../ViewDoc.svelte'
 
 </script>
 

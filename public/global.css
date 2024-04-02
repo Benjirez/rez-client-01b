@@ -34,8 +34,8 @@ input, button, select, textarea {
 	font-family: inherit;
 	font-size: inherit;
 	-webkit-padding: 0px;
-	padding: 0px,
-	margin: opx;
+	padding: 0px;
+	margin: 0px;
 	box-sizing: border-box;
 	border: 1px solid #ccc;
 	border-radius: 2px;

@@ -1,5 +1,5 @@
 <script> 
- import { myData, selectedOption } from './stateStore.js'
+ import { myData, selectedOption } from '../stateStore.js'
   
 </script>
 

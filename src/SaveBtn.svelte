@@ -30,4 +30,13 @@
 </script>
 
 
-<button on:click={saveMe}> save </button>
+<button on:click={saveMe}> save new </button>
+
+<style>
+button{
+  margin: 0px;
+  padding: 2px 8px;
+  font-family: monospace;
+  font-size:18px;
+}
+  </style>
