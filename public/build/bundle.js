@@ -526,7 +526,7 @@ var app = (function () {
 
     const selectedIndex = writable('none');
 
-    const API_URI = writable('https://aware-crow-shrug.cyclic.app'); 
+    const API_URI = writable('https://rez-api-01.vercel.app/'); 
 
     //export const API_URI = writable('http://localhost:3000')
 
