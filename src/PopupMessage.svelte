@@ -1,4 +1,3 @@
-<!-- PopupMessage.svelte -->
 <style>
   .popup {
     position: fixed;
