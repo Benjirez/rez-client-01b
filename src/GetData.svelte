@@ -28,7 +28,8 @@
 
   </script>
 
+<div>
   {#if isLoading}
     <PopupMessage>Waiting...</PopupMessage>
   {/if}
-
+</div>
