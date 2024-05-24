@@ -30,6 +30,6 @@
 
 <div>
   {#if isLoading}
-    <PopupMessage>Waiting...</PopupMessage>
+    <PopupMessage>server is starting, please wait...</PopupMessage>
   {/if}
 </div>
