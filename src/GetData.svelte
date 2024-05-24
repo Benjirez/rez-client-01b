@@ -5,10 +5,10 @@
   $selectedOption = {
   col_a: "",
   col_b: "",
-  col_c: "",
+  col_c: "...refreshing data, please wait",
   col_d: "",
   col_e: "",
-  col_f: "",
+  col_f: "...refreshing data, please wait",
   col_g: "",
   col_h: ""
   }
