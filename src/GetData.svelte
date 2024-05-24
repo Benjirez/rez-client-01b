@@ -1,7 +1,7 @@
 <script> 
   import { myData, collPick, API_URI, selectedOption } from './stateStore.js'
   import { onMount } from 'svelte';
-  import PopupMessage from 'PopupMessage.svelte'; 
+  import PopupMessage from './PopupMessage.svelte'; 
 
   let isLoading = false;
 
