@@ -15,9 +15,9 @@ async function deleteMe() {
 
   if (confirmed ) {
     
-    await fetch( $API_URI + '/old/' + $selectedOption._id,{ method: 'DELETE' } )
+    await fetch( $API_URI + 'old/' + $selectedOption._id,{ method: 'DELETE' } )
       
-    const res = await fetch( $API_URI + '/old/' + $collPick);
+    const res = await fetch( $API_URI + 'old/' + $collPick);
       $myData = await res.json() 
 
   } else {
