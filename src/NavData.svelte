@@ -3,7 +3,7 @@ import { myData, collPick,  API_URI, selectedIndex , selectedOption} from './sta
 
 const refreshMe = async () => {
     $selectedIndex = 'none'
-    const res = await fetch( $API_URI +'/old/' + $collPick);
+    const res = await fetch( $API_URI +'old/' + $collPick);
     $myData = await res.json() 
     //console.log ($myData)
 
