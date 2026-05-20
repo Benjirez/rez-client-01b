@@ -1,6 +1,8 @@
 <script>
 import { myData, collPick,  API_URI, selectedIndex , selectedOption} from './stateStore.js'
 
+let storeNames = ['1', '2', '3', '4', '5', '6'];
+
 const refreshMe = async () => {
     $selectedIndex = 'none'
     const res = await fetch( $API_URI +'old/' + $collPick);
@@ -10,28 +12,23 @@ const refreshMe = async () => {
   }
 
   const sortMe = ()=>{
-  // Assuming you have an array of objects called 'myCollection'
     $myData = $myData.sort((a, b) => {
-    const titleA = a.col_a.toUpperCase(); // Ignore case by converting to uppercase
-    const titleB = b.col_a.toUpperCase(); // Ignore case by converting to uppercase
-
-    // Compare the titles alphabetically
+    const titleA = a.col_a.toUpperCase();
+    const titleB = b.col_a.toUpperCase();
     if (titleA < titleB) {
-        return -1; // If titleA comes before titleB, return a negative number
+        return -1;
     }
     if (titleA > titleB) {
-        return 1; // If titleA comes after titleB, return a positive number
+        return 1;
     }
-    return 0; // If titles are equal, return 0
+    return 0;
     });
    
    $selectedIndex = $myData.findIndex(item => item === $selectedOption ); 
-   //console.log( newIndex)
   }
 
 
   let mySearch = "";
-  // Assuming you have an array of objects called 'myCollection'
     const searchMe =()=>{
         $myData = $myData.filter(obj => {
 
@@ -39,8 +36,8 @@ const refreshMe = async () => {
           let low2 = obj.col_a.toLowerCase()
           let low3 = low1 + ' ' + low2
 
-    const myKeyValue = ( low3 ); // Convert myKey value to lowercase for case-insensitive matching
-    const searchText = mySearch.toLowerCase(); // Convert searchText to lowercase for case-insensitive matching
+    const myKeyValue = ( low3 );
+    const searchText = mySearch.toLowerCase();
     return myKeyValue.includes(searchText);
     });
     $selectedIndex = $myData.findIndex(item => item === $selectedOption ); 
@@ -48,14 +45,11 @@ const refreshMe = async () => {
 
 </script>
 
-<!-- <input type="text" bind:value={$collPick} on:change={ refreshMe }/> -->
-
-<button class:selected={$collPick === 0} on:click={ ()=>{ $collPick=0; refreshMe() }}>1</button>
-<button class:selected={$collPick === 1} on:click={ ()=>{ $collPick=1; refreshMe() }}>2</button>
-<button class:selected={$collPick === 2} on:click={ ()=>{ $collPick=2; refreshMe() }}>3</button>
-<button class:selected={$collPick === 3} on:click={ ()=>{ $collPick=3; refreshMe() }}>4</button>
-<button class:selected={$collPick === 4} on:click={ ()=>{ $collPick=4; refreshMe() }}>5</button>
-<button class:selected={$collPick === 5} on:click={ ()=>{ $collPick=5; refreshMe() }}>6</button>
+<select on:change={(e) => { $collPick = parseInt(e.target.value); refreshMe() }}>
+  {#each storeNames as name, i}
+    <option value={i} selected={$collPick === i}>{name}</option>
+  {/each}
+</select>
 &nbsp <button on:click={ sortMe }>A-Z</button>
 &nbsp<input type="text" bind:value={ mySearch } on:change={ searchMe } />
 
@@ -68,8 +62,12 @@ const refreshMe = async () => {
 
   }
 
-  .selected {
-    background-color: rgb(238, 156, 156);
+  select {
+    background-color: rgb(233, 217, 217);
+    margin: 0px;
+    padding: 2px 6px;
+    font-family: monospace;
+    font-size: 18px;
   }
 
   button{
