@@ -18,6 +18,7 @@ const fetchStoreNames = async () => {
   }
 }
 
+
 const addStore = async () => {
   if (!newStoreName.trim()) return;
   await fetch($API_URI + 'store-names', {
