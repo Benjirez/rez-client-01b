@@ -51,11 +51,10 @@ const saveEdit = async () => {
   await fetchStoreNames();
 }
 
-const duplicateStore = async (name) => {
-  await fetch($API_URI + 'store-names', {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ name: name + ' copy' })
+const duplicateStore = async (store) => {
+  if (!store._id) return;
+  await fetch($API_URI + 'store-names/' + store._id + '/duplicate', {
+    method: 'POST'
   });
   await fetchStoreNames();
 }
