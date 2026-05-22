@@ -116,7 +116,7 @@ onMount(fetchStoreNames);
         {:else}
           <span class="store-name">{store.name}</span>
           <button on:click={() => startEdit(store)}>edit</button>
-          <button on:click={() => duplicateStore(store.name)}>dup</button>
+          <button on:click={() => duplicateStore(store)}>dup</button>
           <button on:click={() => deleteStore(store._id)}>del</button>
         {/if}
       </div>
