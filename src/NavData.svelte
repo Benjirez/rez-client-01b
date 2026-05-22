@@ -29,9 +29,19 @@ const addStore = async () => {
   await fetchStoreNames();
 }
 
-const deleteStore = async (id) => {
-  if (!id) return;
-  await fetch($API_URI + 'store-names/' + id, { method: 'DELETE' });
+let pendingDelete = null; // { store, count }
+
+const confirmDelete = async (store) => {
+  if (!store._id) return;
+  const res = await fetch($API_URI + 'store-names/' + store._id + '/count');
+  const data = await res.json();
+  pendingDelete = { store, count: data.count };
+}
+
+const executeDelete = async () => {
+  if (!pendingDelete) return;
+  await fetch($API_URI + 'store-names/' + pendingDelete.store._id, { method: 'DELETE' });
+  pendingDelete = null;
   await fetchStoreNames();
 }
 
@@ -108,7 +118,11 @@ onMount(fetchStoreNames);
 
     {#each storeNames as store}
       <div class="store-row">
-        {#if editingId === store._id}
+        {#if pendingDelete?.store._id === store._id}
+          <span class="warn">Delete "{store.name}" ({pendingDelete.count} docs)?</span>
+          <button class="danger" on:click={executeDelete}>yes</button>
+          <button on:click={() => pendingDelete = null}>no</button>
+        {:else if editingId === store._id}
           <input class="edit-input" type="text" bind:value={editingName}
             on:keydown={(e) => e.key === 'Enter' && saveEdit()} />
           <button on:click={saveEdit}>save</button>
@@ -117,7 +131,7 @@ onMount(fetchStoreNames);
           <span class="store-name">{store.name}</span>
           <button on:click={() => startEdit(store)}>edit</button>
           <button on:click={() => duplicateStore(store)}>dup</button>
-          <button on:click={() => deleteStore(store._id)}>del</button>
+          <button on:click={() => confirmDelete(store)}>del</button>
         {/if}
       </div>
     {/each}
@@ -216,4 +230,16 @@ onMount(fetchStoreNames);
   .add-row button {
     font-size: 18px;
   }
+.warn {
+  flex: 1;
+  font-size: 13px;
+  color: #c00;
+}
+.danger {
+  font-size: 12px;
+  padding: 2px 5px;
+  color: #c00;
+  font-weight: bold;
+}
 </style>
+
