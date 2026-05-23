@@ -3,7 +3,7 @@
 
   async function saveMe() {
 
-   await fetch( ($API_URI +'old'), { 
+    const res = await fetch($API_URI + 'old/' + $collPick, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
