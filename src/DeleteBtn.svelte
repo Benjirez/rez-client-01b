@@ -5,7 +5,7 @@ import { myData, selectedOption, collPick, API_URI, selectedIndex  } from './sta
 
 async function deleteMe() {
 
-  if ($selectedIndex > 0){
+  if ($selectedIndex !== 'none'){
 
     let confirmed = confirm(
     `Are you sure you want to DELETE: 
