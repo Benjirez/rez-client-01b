@@ -117,25 +117,27 @@ onMount(fetchStoreNames);
       <button class="close-btn" on:click={() => showModal = false}>✕</button>
     </div>
 
-    {#each storeNames as store}
-      <div class="store-row">
-        {#if pendingDelete?.store._id === store._id}
-          <span class="warn">Delete "{store.name}" ({pendingDelete.count} docs)?</span>
-          <button class="danger" on:click={executeDelete}>yes</button>
-          <button on:click={() => pendingDelete = null}>no</button>
-        {:else if editingId === store._id}
-          <input class="edit-input" type="text" bind:value={editingName}
-            on:keydown={(e) => e.key === 'Enter' && saveEdit()} />
-          <button on:click={saveEdit}>save</button>
-          <button on:click={() => editingId = null}>cancel</button>
-        {:else}
-          <span class="store-name">{store.name}</span>
-          <button on:click={() => startEdit(store)}>edit</button>
-          <button on:click={() => duplicateStore(store)}>dup</button>
-          <button on:click={() => confirmDelete(store)}>del</button>
-        {/if}
-      </div>
-    {/each}
+    <div class="store-list">
+      {#each storeNames as store}
+        <div class="store-row">
+          {#if pendingDelete?.store._id === store._id}
+            <span class="warn">Delete "{store.name}" ({pendingDelete.count} docs)?</span>
+            <button class="danger" on:click={executeDelete}>yes</button>
+            <button on:click={() => pendingDelete = null}>no</button>
+          {:else if editingId === store._id}
+            <input class="edit-input" type="text" bind:value={editingName}
+              on:keydown={(e) => e.key === 'Enter' && saveEdit()} />
+            <button on:click={saveEdit}>save</button>
+            <button on:click={() => editingId = null}>cancel</button>
+          {:else}
+            <span class="store-name">{store.name}</span>
+            <button on:click={() => startEdit(store)}>edit</button>
+            <button on:click={() => duplicateStore(store)}>dup</button>
+            <button on:click={() => confirmDelete(store)}>del</button>
+          {/if}
+        </div>
+      {/each}
+    </div>
 
     <div class="add-row">
       <input class="add-input" type="text" bind:value={newStoreName} placeholder="new store name"
@@ -194,6 +196,10 @@ onMount(fetchStoreNames);
   .close-btn {
     font-size: 14px;
     padding: 2px 6px;
+  }
+  .store-list {
+    height: 300px;
+    overflow-y: auto;
   }
   .store-row {
     display: flex;
